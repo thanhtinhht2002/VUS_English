@@ -1,0 +1,198 @@
+/*
+Theme Name: Child Theme
+Version: 1.0
+Description: Child theme for Woo.
+Author: Woo
+Author URI: https://woocommerce.com
+*/
+
+/*! RESET STYLE */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* width */
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--color-background-6);
+ 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(17, 24, 28, 0.7);
+  border-radius: 50px;
+  border: 1px solid var(--color-background-6);
+}
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  height: 100%;
+  width: 100%;
+}
+.form-field._checkbox_field.show_if_simple{
+display: block  !important;
+}
+
+
+a {
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  color: #131313 ;
+}
+
+a:hover {
+  text-decoration: none !important;
+
+}
+
+ul {
+  margin: 0 !important;
+  padding: 0;
+}
+
+button,
+input {
+  outline: none;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+p,
+span {
+  margin: 0 !important;
+}
+
+/*! root */
+
+:root {
+  /* List colors background */
+  --color-background-0: #000;
+  --color-background-1: #212121;
+  --color-background-2: #757575;
+  --color-background-3: hsl(0, 0%, 95%);
+  --color-background-4: #08b371;
+  --color-background-5: #f09b0a;
+  --color-background-6: #fff;
+  --color-background-7: #0f80fe;
+  --color-background-8: #00848c;
+  --color-background-9: #6056d6;
+  --color-background-10: #333;
+  --color-background-11: #7c7a7a;
+  --color-background-12: hsl(0, 0%, 96%);
+  --color-background-13: #fff0e5;
+  --color-background-14: #eff6fc;
+  --color-background-15: #030180;
+  --color-background-16: #e6e6e6;
+  --color-background-17: #004085;
+  --color-background-18: #fef1e5;
+  --color-background-19: #2073f9;
+  --color-background-20: #4d40cc;
+  --color-background-21: #8a8a8a;
+  --color-background-22: hsl(0, 0%, 92%);
+  --color-background-23: #437dff;
+  --color-background-24: #a8a8a8;
+  --color-background-25: #12B7DA;
+  --color-background-26: #fafafa;
+  --color-background-27: #222f6e;
+  --color-background-28: #b01a20;
+  --color-background-29: #e6f0ff;
+  --color-background-30: #a3722a;
+  --color-background-31: #ffca80;
+  --color-background-32: linear-gradient(0deg, rgba(255,220,132,1) 0%, rgba(255,255,206,1) 100%);
+  --color-background-33: #253d97;
+  --color-background-34: #4baaff;
+  --color-background-35: linear-gradient(0deg, rgba(72,177,255,1) 0%, rgba(196,227,247,1) 100%);
+  --color-background-36:#dcaaaa;
+  --color-background-37:#ffeeee;
+  --color-background-38:#222f6e;
+  --color-background-39: #ffd805;
+
+  /* List color text */
+  --color-text-0: #000000;
+  --color-text-1: #212121;
+  --color-text-2: #757575;
+  --color-text-3: #f3f3f3;
+  --color-text-4: #08b371;
+  --color-text-5: #f09b0a;
+  --color-text-6: #fff;
+  --color-text-7: #0f80fe;
+  --color-text-8: #00848c;
+  --color-text-9: #6056d6;
+  --color-text-10: #333;
+  --color-text-11: #7c7a7a;
+  --color-text-12: #f5f5f5;
+  --color-text-13: #fff0e5;
+  --color-text-14: #eff6fc;
+  --color-text-15: #030180;
+  --color-text-16: #e6e6e6;
+  --color-text-17: #e05000;
+  --color-text-18: #fef1e5;
+  --color-text-19: #2073f9;
+  --color-text-20: #4d40cc;
+  --color-text-21: #8a8a8a;
+  --color-text-22: #ebebeb;
+  --color-text-23: #12B7DA;
+  --color-text-24: rgb(255, 151, 53);
+
+  /* List text size */
+  --size-text-0: 6px;
+  --size-text-1: 8px;
+  --size-text-2: 10px;
+  --size-text-3: 12px;
+  --size-text-4: 14px;
+  --size-text-5: 16px;
+  --size-text-6: 20px;
+  --size-text-7: 24px;
+  --size-text-8: 26px;
+  --size-text-9: 27px;
+  --size-text-10: 28px;
+  --size-text-11: 29px;
+  --size-text-12: 18px;
+  --size-text-13: 60px;
+  --size-text-14: 44px;
+  --size-text-15: 32px;
+  --size-text-16: 50px
+    /* List border radius */
+    --border-radius-size-0: 6px;
+  --border-radius-size-1: 8px;
+  --border-radius-size-2: 12px;
+  --border-radius-size-3: 14px;
+  --border-radius-size-4: 16px;
+  --border-radius-size-5: 20px;
+  --border-radius-size-6: 999px;
+  --border-radius-size-7: 2px;
+  --border-radius-size-8: 3px;
+}
+
+/*! component */
+
+.shadow {
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+}
+.max-width {
+  width: 100%;
+  max-width: 1160px;
+  margin: auto !important;
+}
