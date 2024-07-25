@@ -35,8 +35,7 @@
     <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/detail-blog.css" />
     <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/cart.css" />
     <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/home-summer.css" />
+    <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/homeindex.css" />
 
 </head>
 <body >
-
-    <main>
