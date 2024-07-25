@@ -23,6 +23,10 @@ defined( 'ABSPATH' ) || exit;
 <div class="woocommerce-order">
 
 	<?php
+	$uri = $_SERVER['REQUEST_URI'];
+	$requesturl = explode("/",  $uri);
+	$order = wc_get_order($requesturl[4]);
+
 	if ( $order ) :
 
 		do_action( 'woocommerce_before_thankyou', $order->get_id() );
