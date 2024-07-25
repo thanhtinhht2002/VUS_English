@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php wp_head(); ?>
+<?php wp_head();?>
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri().'/js/jquery.js'; ?>">
 </script>
 <script type="text/javascript" src="<?php echo get_stylesheet_directory_uri().'/js/jquery-ui.min.js'; ?>">
@@ -28,14 +28,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?php echo $theme_path; ?>/style.css" />
+    <link rel="stylesheet" href="<?php echo $theme_path; ?>/style.css"/>
     <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/header.css" />
     <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/checkout.css" />
     <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/blog.css" />
     <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/detail-blog.css" />
     <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/cart.css" />
     <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/home-summer.css" />
-    <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/homeindex.css" />
+    <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/home_index.css" />
+    <link rel="stylesheet" href="<?php echo $theme_path; ?>/assets/css/product-store.css" />
+
 
 </head>
 <body >

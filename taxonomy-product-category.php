@@ -1,119 +1,97 @@
+<?php
+/**
+ * The Template for displaying product archives, including the main shop page which is a post type archive
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see https://woocommerce.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 8.6.0
+ */
 
-    <main class="detail__product--main">
-        <div class="detail__product--container">
-            <div class="detail__product--navbar">
-                <div class="detail__product--navbar__categori">
-                    <img src="../assets/images/detail_product.png" alt="" srcset="">
-                    <div class="detail__product--navbar__searchbox">
-                        <input type="text" placeholder="Nhập từ khóa tìm kiếm . . .">
-                        <span class="detail__product--navbar__searchbox--btn">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </span>
-                    </div>
-                    <div class="detail__product--navbar__func">
-                        <div class="detail__product--navbar__func--link">
-                            <div><ion-icon name="alarm-outline"></ion-icon></div>
-                            <div class="detail__product--navbar__func--link__name">
-                                Thông báo
-                            </div>
-                        </div>
-                        <div class="detail__product--navbar__func--link">
-                            <div><ion-icon name="cart-outline"></ion-icon></div>
-                            <div class="detail__product--navbar__func--link__name">
-                                Giỏ hàng
-                            </div>
-                        </div>
-                        <div class="detail__product--navbar__func--link">
-                            <div><ion-icon name="person-circle-outline"></ion-icon></div>
-                            <div class="detail__product--navbar__func--link__name">
-                                Name User
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="detail__product--box">
-                <div class="detail__product--media">
-                    <div class="detail__product--media__slide">
-                        <div class="detail__product--media__slide--imgs">
-                            <img src="../assets/images/book_detail.webp" alt="">
-                        </div>
-                        <div class="detail__product--media__slide--thumbnail">
-                            <div class="detail__media--list">
-                                <div class="detail__product--media__slide--items">
-                                    <img src="../assets/images/book_detail.webp" alt="">
-                                </div>
-                                <div class="detail__product--media__slide--items">
-                                    <img src="../assets/images/book_detail.webp" alt="">
-                                </div>
-                                <div class="detail__product--media__slide--items">
-                                    <img src="../assets/images/book_detail.webp" alt="">
-                                </div>
-                                <div class="detail__product--media__slide--items">
-                                    <img src="../assets/images/book_detail.webp" alt="">
-                                </div>
-                                <div class="detail__product--media__slide--items">
-                                    <img src="../assets/images/book_detail.webp" alt="">
-                                </div>
-                                <div class="detail__product--media__slide--items">
-                                    <img src="../assets/images/book_detail.webp" alt="">
-                                </div>
-                                <div class="detail__product--media__slide--items">
-                                    <img src="../assets/images/book_detail.webp" alt="">
-                                </div>
+defined( 'ABSPATH' ) || exit;
 
-                            </div>
-                        </div>
+get_header( 'shop' );
 
+/**
+ * Hook: woocommerce_before_main_content.
+ *
+ * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+ * @hooked woocommerce_breadcrumb - 20
+ * @hooked WC_Structured_Data::generate_website_data() - 30
+ */
+do_action( 'woocommerce_before_main_content' );
 
-                    </div>
-                    <div class="detail__product--view__addbox">
-                        <button class="detail__product--addBtn detail__whitebtn">
-                            Thêm vào giỏ hàng
-                        </button>
-                        <button class="detail__product--addBtn detail__redbtn">
-                            Đặt trước
-                        </button>
-                    </div>
-                </div>
-                <div class="detail__product--detail">
-                    <div class="detail__product--inf">
-                        <div class="detail__product--title">
-                            Búp Sen Xanh (Tái Bản 2020)
-                        </div>
-                        <div class="detail__product--rating">
-                            4 * * * * *|Đã bán 3.7k
-                        </div>
-                        <div class="detail__product--price">
-                            <div class="detail__product--price__buy">61.200 đ</div>
-                            <div class="detail__product--price__sale"> 72.000 đ</div> <span
-                                class="detail__product--rate__sale">-15%</span>
-                        </div>
-                    </div>
-                    <div class="detail__product--describe">
-                        <div class="detail__product--describe__title">
-                            Mô tả sản phẩm
-                        </div>
-                        <div class="detail__product--describe__content">
-                            Có thể xếp “Búp Sen Xanh” vào nhóm tác phẩm văn học dành cho thiếu nhi và là tác phẩm nổi
-                            tiếng nhất viết về chủ tịch Hồ Chí Minh trong suốt thời thơ ấu cho đến khi rời Việt Nam sang
-                            Pháp.
+/**
+ * Hook: woocommerce_shop_loop_header.
+ *
+ * @since 8.6.0
+ *
+ * @hooked woocommerce_product_taxonomy_archive_header - 10
+ */
+do_action( 'woocommerce_shop_loop_header' );
 
-                            “Búp Sen Xanh” là nơi tiểu thuyết và lịch sử đã gặp nhau và hoạ nên một giai đoạn trong cuộc
-                            đời người Cha già của dân tộc Việt Nam. Nơi ấy, có quê nhà xứ Nghệ, có làng Sen, có khung
-                            dệt của mẹ, có lời dạy của cha, có những người bạn và những kỷ niệm ấu thơ. Nơi ấy có xứ Huế
-                            mà trong cuộc sống nghèo khổ có trăn trở tuổi trẻ, về con người, về vận mệnh dân tộc, có mất
-                            mát và đau thương...
+if ( woocommerce_product_loop() ) {
 
-                            “Búp Sen Xanh” vượt ra ngoài những giới hạn của một tác phẩm thiếu nhi, có thể làm bất kỳ ai
-                            rung động đến rơi nước mắt trong đêm chia ly, khi người con từ biệt cha ra đi để tìm một con
-                            đường cho chính mình và cho dân tộc. Một phần cuộc đời, trọn vẹn lý tưởng và dấn thân... Búp
-                            Sen Xanh không chỉ là câu chuyện về lãnh tụ mà còn là câu chuyện để làm người.
-                        </div>
-                    </div>
-                </div>
+	/**
+	 * Hook: woocommerce_before_shop_loop.
+	 *
+	 * @hooked woocommerce_output_all_notices - 10
+	 * @hooked woocommerce_result_count - 20
+	 * @hooked woocommerce_catalog_ordering - 30
+	 */
+	do_action( 'woocommerce_before_shop_loop' );
 
-            </div>
-        </div>
-    </main>
-   
+	woocommerce_product_loop_start();
+
+	if ( wc_get_loop_prop( 'total' ) ) {
+		while ( have_posts() ) {
+			the_post();
+
+			/**
+			 * Hook: woocommerce_shop_loop.
+			 */
+			do_action( 'woocommerce_shop_loop' );
+
+			wc_get_template_part( 'content', 'product' );
+		}
+	}
+
+	woocommerce_product_loop_end();
+
+	/**
+	 * Hook: woocommerce_after_shop_loop.
+	 *
+	 * @hooked woocommerce_pagination - 10
+	 */
+	do_action( 'woocommerce_after_shop_loop' );
+} else {
+	/**
+	 * Hook: woocommerce_no_products_found.
+	 *
+	 * @hooked wc_no_products_found - 10
+	 */
+	do_action( 'woocommerce_no_products_found' );
+}
+
+/**
+ * Hook: woocommerce_after_main_content.
+ *
+ * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+ */
+do_action( 'woocommerce_after_main_content' );
+
+/**
+ * Hook: woocommerce_sidebar.
+ *
+ * @hooked woocommerce_get_sidebar - 10
+ */
+do_action( 'woocommerce_sidebar' );
+
+get_footer( 'shop' );

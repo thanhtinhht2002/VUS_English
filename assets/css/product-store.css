@@ -1,0 +1,181 @@
+.product__list--container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 70px;
+}
+
+.product__list--navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 35px 0;
+}
+
+.product__list--navbar__title {
+    text-align: center;
+    padding: 20px 0;
+}
+.product__list--navbar__product {
+   display: flex;
+   width: 100%;
+    gap: 10px; /* Thêm khoảng cách giữa các cột nếu cần */
+    position: relative;
+}
+.product__list--navbar__filter{
+    position: sticky;
+    top: 100px;
+    overflow-y: scroll;
+}
+
+.product__list--navbar__product--filter{
+    position: sticky;
+    top: 70px;
+    height: calc(100vh - 100px);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    gap: 20px;
+    padding: 10px;
+    min-width: 200px;
+}
+
+.product__list--navbar__product--filter__title{
+    font-weight: bold;
+}
+
+.product__list--navbar__product--filter__input{
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: var(--color-background-2);
+    font-size: .9rem;
+    font-weight: 500;
+    background-color: #ededed;
+    padding: 10px;
+}
+.product__list--tags__list{
+    display: flex;
+    gap: 7px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.product__list--tags__items{
+    padding: 0 5px;
+    background-color:rgb(204, 204, 204);
+    border-radius: 20px;
+}
+.product__list--tags__list ul li a{
+    font-weight: 400;
+    padding: 4px 15px;
+    color: var(--color-background-27);
+    font-size: 1rem;
+    margin-left: 10px;
+    width: 100%;
+    background: var(--color-background-29);
+    border-radius: 10px;
+}
+.product__list--tags__list ul{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+
+
+
+.product__list--navbar__product--filter__btn{
+    padding: 10px;
+    background-color:crimson;
+    border-radius: 10px;
+    color: white;
+}
+.product__list--navbar__product--filter__sorted{
+    padding-top: 10px;
+    border-top: 1px solid lightgray;
+}
+.product__list--navbar__items:hover{
+    transition: ease-in 0.3s;
+    scale: 1.015;
+}
+.product__list--navbar__product--items{
+    margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, .333333fr));
+    gap: 15px;
+}
+.product__list--navbar__items ,.product__list--navbar__product--filter{
+    border-radius: 13px;
+    overflow: hidden;
+}
+.product__list--navbar__items {
+    max-height: 460px;
+    background-color: white;
+    display:inherit;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+}
+
+.product__list--navbar__items--image {
+    margin-bottom: 10px;
+    min-height: 300px
+}
+.product__list--navbar__items--image img{
+    width: 100%;
+}
+.product__list--navbar__product--inf {
+    /* max-height: 60px; */
+    padding: 15px;
+    padding-top: 0;
+}
+
+.product__list--navbar__product--type,
+.product__list--navbar__product--desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 1;
+    line-height: 24px;
+}
+.product__list--rating{
+    padding: 0 20px;
+    font-size: 12px;
+}
+.product__list--navbar__product--type{
+    max-height: 20px;
+    font-weight: bolder;
+}
+.product__list--navbar__product--desc{
+    min-height: 45px;
+}
+
+/* number page */
+.product__numpage--pagination{
+    position: absolute;
+    bottom: 0;
+    padding: 30px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.product__numpage--pagination__list{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.product__numpage--pagination__item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--color-background-12);
+    font-weight: 600;
+    color: var(--color-background-10);
+}
