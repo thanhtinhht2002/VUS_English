@@ -32,7 +32,6 @@
 .product__list--navbar__product--filter{
     position: sticky;
     top: 70px;
-    height: calc(100vh - 100px);
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
@@ -56,6 +55,17 @@
     background-color: #ededed;
     padding: 10px;
 }
+.product__list--navbar__product--filter 
+.woocommerce-ordering .orderby{
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 100%;
+}
+.product__list--navbar__product--filter 
+.woocommerce-ordering .orderby option{
+    padding: 10px 15px;
+}
+
 .product__list--tags__list{
     display: flex;
     gap: 7px;
@@ -101,9 +111,10 @@
     scale: 1.015;
 }
 .product__list--navbar__product--items{
+    grid-auto-flow: column;
     margin-bottom: 100px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, .333333fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, .333333fr));
     gap: 15px;
 }
 .product__list--navbar__items ,.product__list--navbar__product--filter{
@@ -119,8 +130,10 @@
 }
 
 .product__list--navbar__items--image {
+    overflow: hidden;
+    width: 100%;
     margin-bottom: 10px;
-    min-height: 300px
+    min-height: 300px;
 }
 .product__list--navbar__items--image img{
     width: 100%;
