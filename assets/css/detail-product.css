@@ -20,15 +20,13 @@
     column-gap: 15px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-row-gap: 20px;
-
 }
 
 .detail__product--navbar__items {
-    background-color: rgb(156, 156, 156);
-    gap: 10px;
-    max-height: 385px;
-    border-radius: 13px;
-    display:inherit;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 100px;
 }
 
 .detail__product--navbar__items--image {
