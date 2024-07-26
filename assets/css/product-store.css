@@ -106,16 +106,17 @@
     padding-top: 10px;
     border-top: 1px solid lightgray;
 }
-.product__list--navbar__items:hover{
-    transition: ease-in 0.3s;
-    scale: 1.015;
+.product__list--navbar__items:hover .product__list--navbar__items--image img {
+    transition: transform 0.3s ease-in;
+    transform: scale(1.015);
 }
+
 .product__list--navbar__product--items{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 15px; 
     margin-bottom: 100px;
-
+    width: 80%;
 }
 .product__list--navbar__items ,.product__list--navbar__product--filter{
     border-radius: 13px;
