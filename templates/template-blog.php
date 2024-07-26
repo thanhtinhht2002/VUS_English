@@ -1,40 +1,36 @@
+<?php
+/*
+ * Template Name: TemplateBlog
+ */
+?>
 <?php global $theme_path; ?>
 <?php get_header(); ?>
 <?php get_sidebar(); ?>   
 <?php $obj=get_queried_object();?>
-<?php $term = get_queried_object();?>
-<?php  $term_id = $term->term_id;?>
-<?php  $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1; ?>
-<?php $args = array(
-        'post_type'      => array('post', 'page'),
-        'posts_per_page' => -1,
-        'post_status'    => 'publish',
-        'paged' => $paged,
-        'posts_per_page'=> 1,
-        'tax_query'      => array(
-            array(
-        'taxonomy'    => 'post_tag',
-        'field'       => 'term_id',
-        'terms'       => [$term_id]
-    )
-   )
-);?>
-<?php $posts = new WP_Query( $args );?>
 <div class="blog__container">
 
 <div class="blog__header">
-    <p>Thẻ: <?php echo $term->name; ?> (<?php echo$posts->found_posts;?>)</p><ion-icon name="options-outline"></ion-icon>
+    <p>Danh Sách Bài Viết</p><ion-icon name="options-outline"></ion-icon>
 </div>
 <div class="blog__content">
     <div class="blog__content--main">
-    <?php if($posts->found_posts>0){ ?>
+        <?php
+            $posts = new WP_Query(array(
+            'post_type'=>'post',
+            'post_status'=>'publish',
+            'cat' => $obj->cat_ID,
+            'orderby' => 'ID',
+            'order' => 'DESC',
+            'posts_per_page'=> 20));
+
+            if($posts->found_posts>0){
+        ?>
 
         <div class="blog__content--list">
             <?php while ($posts->have_posts()) : $posts->the_post(); ?>
             <div class="blog__content--list__item">
                 <div class="blog__content--list__item-view">
-                    <span><?php echo do_shortcode('[post-views]'); ?> </span>
-                    <ion-icon name="eye"></ion-icon>
+                    <ion-icon name="eye-outline"></ion-icon>
                 </div>
                 <a href="<?php the_permalink(); ?>">
                     <img src="<?php echo get_the_post_thumbnail_url (); ?>" alt="img">
@@ -66,7 +62,18 @@
         </div>
         <div class="blog__content--pagination">
             <div class="blog__content--pagination__list">
-            <?php wp_pagenavi( array( 'query' => $posts ) ); ?>
+                <div class="blog__content--pagination__item">
+                    <a href="#"><ion-icon name="caret-back-outline"></ion-icon></a>
+                </div>
+                <div class="blog__content--pagination__item">
+                    <a href="#">1</a>
+                </div>
+                <div class="blog__content--pagination__item">
+                    <a href="#">2</a>
+                </div>
+                <div class="blog__content--pagination__item">
+                    <a href="#"><ion-icon name="caret-forward-outline"></ion-icon></a>
+                </div>
             </div>
         </div>
         <?php } else { ?>
@@ -218,17 +225,6 @@
             </div>
         </div>
         </div>
-        <div class="blog__content--recomend tag">
-            <div class="blog__content--recomend__header">
-                <p>Tag</p>
-            </div>
-            <div class="blog__content--recomend__list">
-            <?php $tagalls = get_tags(array('hide_empty' => false));
-                foreach ($tagalls as $tagall) { ?>
-             <a href="<?php echo home_url()."/tag/".$tagall->slug;?>"><?php echo $tagall->name ?></a>
-           <?php } ?>
-            </div>
-        </div>
         <div class="blog__content--recomend">
             <div class="blog__content--recomend__header">
                 <p>Bài Viết Mới Nhất</p>
@@ -250,7 +246,17 @@
                 <?php endwhile; wp_reset_postdata(); ?>
             </div>
         </div>
-
+        <div class="blog__content--recomend tag">
+            <div class="blog__content--recomend__header">
+                <p>Tag</p>
+            </div>
+            <div class="blog__content--recomend__list">
+            <?php $tagalls = get_tags(array('hide_empty' => false));
+                foreach ($tagalls as $tagall) { ?>
+             <a href="<?php echo home_url()."/tag/".$tagall->slug;?>"><?php echo $tagall->name ?></a>
+           <?php } ?>
+            </div>
+        </div>
     </div>
 </div>
 </div>
