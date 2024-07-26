@@ -1,36 +1,31 @@
-<?php
-/*
- * Template Name: TemplateBlog
- */
-?>
 <?php global $theme_path; ?>
+<?php global $paged;?>
 <?php get_header(); ?>
 <?php get_sidebar(); ?>   
 <?php $obj=get_queried_object();?>
-<div class="blog__container">
-
-<div class="blog__header">
-    <p>Danh Sách Bài Viết</p><ion-icon name="options-outline"></ion-icon>
-</div>
-<div class="blog__content">
-    <div class="blog__content--main">
-        <?php
+<?php
             $posts = new WP_Query(array(
             'post_type'=>'post',
             'post_status'=>'publish',
             'cat' => $obj->cat_ID,
             'orderby' => 'ID',
-            'order' => 'DESC',
-            'posts_per_page'=> 20));
-
-            if($posts->found_posts>0){
-        ?>
-
+            'posts_per_page'=> 1,
+            'paged' => $paged,
+            'order' => 'DESC'));?>
+<div class="blog__container">
+<div class="blog__header">
+    <p>Danh sách bài viết</p><ion-icon name="options-outline"></ion-icon>
+    <?php  $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1; ?>
+</div>
+<div class="blog__content">
+    <div class="blog__content--main">
+    <?php if($posts->found_posts>0) {?>
         <div class="blog__content--list">
             <?php while ($posts->have_posts()) : $posts->the_post(); ?>
             <div class="blog__content--list__item">
                 <div class="blog__content--list__item-view">
-                    <ion-icon name="eye-outline"></ion-icon>
+                    <span><?php echo do_shortcode('[post-views]'); ?> </span>
+                    <ion-icon name="eye"></ion-icon>
                 </div>
                 <a href="<?php the_permalink(); ?>">
                     <img src="<?php echo get_the_post_thumbnail_url (); ?>" alt="img">
@@ -48,7 +43,7 @@
                         <p><?php echo wp_trim_words( get_the_title() , 50 ) ?></p>
                     </a>
                     <div class="blog__content--list__item--description">
-                        <p><?php echo wp_trim_words( get_the_excerpt() , 50 ) ?></p>
+                        <p><?php echo wp_trim_words( get_the_excerpt() , 30 ) ?></p>
                     </div>
                     <div class="blog__content--list__item--readmore">
                         <a href="#">Xem chi tiết</a>
@@ -58,22 +53,12 @@
                     </div>
                 </div>
             </div>
-            <?php endwhile ; wp_reset_query() ;?>
+            <?php endwhile ;?>
+            <?php wp_reset_query() ;?>
         </div>
         <div class="blog__content--pagination">
             <div class="blog__content--pagination__list">
-                <div class="blog__content--pagination__item">
-                    <a href="#"><ion-icon name="caret-back-outline"></ion-icon></a>
-                </div>
-                <div class="blog__content--pagination__item">
-                    <a href="#">1</a>
-                </div>
-                <div class="blog__content--pagination__item">
-                    <a href="#">2</a>
-                </div>
-                <div class="blog__content--pagination__item">
-                    <a href="#"><ion-icon name="caret-forward-outline"></ion-icon></a>
-                </div>
+                <?php wp_pagenavi( array( 'query' => $posts ) ); ?>
             </div>
         </div>
         <?php } else { ?>
@@ -225,6 +210,17 @@
             </div>
         </div>
         </div>
+        <div class="blog__content--recomend tag">
+            <div class="blog__content--recomend__header">
+                <p>Tag</p>
+            </div>
+            <div class="blog__content--recomend__list">
+            <?php $tagalls = get_tags(array('hide_empty' => false));
+                foreach ($tagalls as $tagall) { ?>
+             <a href="<?php echo home_url()."/tag/".$tagall->slug;?>"><?php echo $tagall->name ?></a>
+           <?php } ?>
+            </div>
+        </div>
         <div class="blog__content--recomend">
             <div class="blog__content--recomend__header">
                 <p>Bài Viết Mới Nhất</p>
@@ -240,23 +236,13 @@
                     <img src="<?php echo get_the_post_thumbnail_url (); ?>" alt="img">
                     <div class="blog__content--recomend--item__text">
                         <p class="blog__content--recomend--item__category"><?php echo wp_trim_words( get_the_title() , 50 ) ?></p>
-                        <p class="blog__content--recomend--item__description"><?php echo wp_trim_words( get_the_excerpt() , 50 ) ?></p>
+                        <p class="blog__content--recomend--item__description"><?php echo wp_trim_words( get_the_excerpt() , 30 ) ?></p>
                     </div>
                 </a>
                 <?php endwhile; wp_reset_postdata(); ?>
             </div>
         </div>
-        <div class="blog__content--recomend tag">
-            <div class="blog__content--recomend__header">
-                <p>Tag</p>
-            </div>
-            <div class="blog__content--recomend__list">
-            <?php $tagalls = get_tags(array('hide_empty' => false));
-                foreach ($tagalls as $tagall) { ?>
-             <a href="<?php echo home_url()."/tag/".$tagall->slug;?>"><?php echo $tagall->name ?></a>
-           <?php } ?>
-            </div>
-        </div>
+
     </div>
 </div>
 </div>

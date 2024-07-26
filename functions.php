@@ -79,3 +79,9 @@ function paginated_category( $query ) {
     } 
 }
 add_action( 'pre_get_posts', 'paginated_category' );
+
+function register_my_menu() {
+    register_nav_menu('main-menu',__( 'Menu chính' ));
+    register_nav_menu('mobile-menu',__( 'Menu di động' ));
+}
+add_action( 'init', 'register_my_menu' );

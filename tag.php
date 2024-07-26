@@ -52,7 +52,7 @@
                         <p><?php echo wp_trim_words( get_the_title() , 50 ) ?></p>
                     </a>
                     <div class="blog__content--list__item--description">
-                        <p><?php echo wp_trim_words( get_the_excerpt() , 50 ) ?></p>
+                        <p><?php echo wp_trim_words( get_the_excerpt() , 30 ) ?></p>
                     </div>
                     <div class="blog__content--list__item--readmore">
                         <a href="#">Xem chi tiết</a>
