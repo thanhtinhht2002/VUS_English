@@ -3,18 +3,15 @@
 <?php get_header(); ?>
 <?php get_sidebar(); ?>   
 <?php $obj=get_queried_object();?>
-<?php
-            $posts = new WP_Query(array(
+<?php       $posts = new WP_Query(array(
             'post_type'=>'post',
             'post_status'=>'publish',
             'cat' => $obj->cat_ID,
             'orderby' => 'ID',
             'posts_per_page'=> 1,
             'paged' => $paged,
-            'order' => 'DESC'));
-
-            if($posts->found_posts>0){
-        ?>
+            'order' => 'DESC'));?>
+            
 <div class="blog__container">
 <div class="blog__header">
     <p>Chủ đề: <?php echo $obj->name; ?> (<?php echo$posts->found_posts;?>)</p><ion-icon name="options-outline"></ion-icon>
@@ -22,6 +19,7 @@
 </div>
 <div class="blog__content">
     <div class="blog__content--main">
+    <?php if($posts->found_posts>0) {?>
         <div class="blog__content--list">
             <?php while ($posts->have_posts()) : $posts->the_post(); ?>
             <div class="blog__content--list__item">
@@ -67,8 +65,10 @@
             <div class="blog__content--list__item--not">
                 <p>Danh Sách Bài Viết Trống</p>
             </div>
+            
         <?php }?>
     </div>
+    
     <div class="blog__content--suggest">
         <div class="blog__content--contact">
             <p class="blog__content--contact_note">Lorem Ipsum is simply dummy text </p>
@@ -227,7 +227,7 @@
                     <img src="<?php echo get_the_post_thumbnail_url (); ?>" alt="img">
                     <div class="blog__content--recomend--item__text">
                         <p class="blog__content--recomend--item__category"><?php echo wp_trim_words( get_the_title() , 50 ) ?></p>
-                        <p class="blog__content--recomend--item__description"><?php echo wp_trim_words( get_the_excerpt() , 50 ) ?></p>
+                        <p class="blog__content--recomend--item__description"><?php echo wp_trim_words( get_the_excerpt() , 30 ) ?></p>
                     </div>
                 </a>
                 <?php endwhile; wp_reset_postdata(); ?>

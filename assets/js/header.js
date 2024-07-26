@@ -8,9 +8,3 @@ mobileMenuOpen.addEventListener('click',()=>{
 mobileMenuClose.addEventListener('click',()=>{
     headerBody.classList.remove('headerMobile');
 })
-function categoryBlog() {
-    headerBody.classList.toggle('categoryBlog');
-}
-function categoryProduct() {
-    headerBody.classList.toggle('categoryProduct');
-}
