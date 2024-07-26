@@ -1,97 +1,181 @@
-<?php
-/**
- * The Template for displaying product archives, including the main shop page which is a post type archive
- *
- * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
- *
- * @see https://woocommerce.com/document/template-structure/
- * @package WooCommerce\Templates
- * @version 8.6.0
- */
+<?php get_header(); ?>
+<?php get_sidebar(); ?>
 
-defined( 'ABSPATH' ) || exit;
 
-get_header( 'shop' );
 
-/**
- * Hook: woocommerce_before_main_content.
- *
- * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
- * @hooked woocommerce_breadcrumb - 20
- * @hooked WC_Structured_Data::generate_website_data() - 30
- */
-do_action( 'woocommerce_before_main_content' );
 
-/**
- * Hook: woocommerce_shop_loop_header.
- *
- * @since 8.6.0
- *
- * @hooked woocommerce_product_taxonomy_archive_header - 10
- */
-do_action( 'woocommerce_shop_loop_header' );
+<main>
 
-if ( woocommerce_product_loop() ) {
+	<div class="product__list--container">
+	<?php do_action('woocommerce_before_main_content'); ?>
+		<div class="product__list--box">
+			<div class="product__list--navbar">
+				<div class="product__list--navbar__filter">
+					Danh sách cửa hàng
+				</div>
+				<div class="product__list--navbar__title">
+					<?php
+					// Get the queried object to determine the current category
+					$term = get_queried_object();
 
-	/**
-	 * Hook: woocommerce_before_shop_loop.
-	 *
-	 * @hooked woocommerce_output_all_notices - 10
-	 * @hooked woocommerce_result_count - 20
-	 * @hooked woocommerce_catalog_ordering - 30
-	 */
-	do_action( 'woocommerce_before_shop_loop' );
+					if ($term && is_a($term, 'WP_Term')) {
+						echo esc_html($term->name);
+					}
+					woocommerce_result_count();
+					?>
+				</div>
+				<div class="product__list--navbar__sorted">
+					Sản phẩm gợi ý
+				</div>
 
-	woocommerce_product_loop_start();
 
-	if ( wc_get_loop_prop( 'total' ) ) {
-		while ( have_posts() ) {
-			the_post();
+			</div>
 
-			/**
-			 * Hook: woocommerce_shop_loop.
-			 */
-			do_action( 'woocommerce_shop_loop' );
+			<div class="product__list--navbar__product">
 
-			wc_get_template_part( 'content', 'product' );
-		}
-	}
+				<div class="product__list--navbar__product--filter">
+					<div class="product__list--navbar__product--filter__title">
+						Tìm kiếm theo từ khóa
+					</div>
+					
+					<input class="product__list--navbar__product--filter__input" type="text"
+						placeholder="Nhập từ khóa để tìm kiếm . . .">
+					<button class="product__list--navbar__product--filter__btn">
+						Tìm kiếm
+					</button>
+					<div class="product__list--navbar__product--filter__desc">
+						Sắp xếp sản phẩm
+					</div>
+					<?php     woocommerce_catalog_ordering(); ?>
+					<div class="product__list--navbar__product--filter__sorted">
+						<div class="product__list--navbar__product--filter__tags">
+							<div class="product__list--tags__list">
+								<p><a href="#"><ion-icon name="link-outline"></ion-icon>Name Category</a></p>
+								<ul>
+									<li><a href="#">Name Category 2</a></li>
+									<li><a href="#">Name Category 2</a></li>
+									<li><a href="#">Name Category 2</a></li>
+								</ul>
 
-	woocommerce_product_loop_end();
+							</div>
 
-	/**
-	 * Hook: woocommerce_after_shop_loop.
-	 *
-	 * @hooked woocommerce_pagination - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop' );
-} else {
-	/**
-	 * Hook: woocommerce_no_products_found.
-	 *
-	 * @hooked wc_no_products_found - 10
-	 */
-	do_action( 'woocommerce_no_products_found' );
+						</div>
+					</div>
+				</div>
+
+				<div class="product__list--navbar__product--items">
+
+
+				<?php 
+if ( wc_get_loop_prop( 'total' ) ) {
+    while ( have_posts() ) {
+        the_post();
+
+        /**
+         * Hook: woocommerce_shop_loop.
+         */
+        do_action( 'woocommerce_shop_loop' );
+
+        global $product; // Sử dụng biến $product của WooCommerce
+        ?>
+        <a class="product__list--navbar__items">
+            <!-- img -->
+            <div class="product__list--navbar__items--image">
+                <?php if ( has_post_thumbnail() ) : ?>
+                    <?php the_post_thumbnail( 'woocommerce_thumbnail' ); ?>
+                <?php else : ?>
+                    <img src="https://picsum.photos/300" alt="<?php the_title(); ?>">
+                <?php endif; ?>
+            </div>
+            <!-- rating -->
+            <div class="product__list--rating">
+                <?php
+                // Hiển thị xếp hạng sản phẩm
+                if ( $average = $product->get_average_rating() ) {
+                    echo wc_get_rating_html( $average );
+                }
+                ?>
+            </div>
+            <!-- type/ desc -->
+            <div class="product__list--navbar__product--inf">
+                <div class="product__list--navbar__product--type">
+                    <?php the_title(); ?>
+                </div>
+                <div class="product__list--navbar__product--desc">
+                    <?php the_excerpt(); ?>
+                </div>
+                <!-- price -->
+				<div class="product__list--navbar__product--price">
+				<?php echo $product->get_price_html(); ?>
+			</div>
+            </div>
+        </a>
+        <?php
+    }
 }
 
-/**
- * Hook: woocommerce_after_main_content.
- *
- * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
- */
-do_action( 'woocommerce_after_main_content' );
+woocommerce_product_loop_end();
 
 /**
- * Hook: woocommerce_sidebar.
+ * Hook: woocommerce_after_shop_loop.
  *
- * @hooked woocommerce_get_sidebar - 10
+ * @hooked woocommerce_pagination - 10
  */
-do_action( 'woocommerce_sidebar' );
+do_action( 'woocommerce_after_shop_loop' );
+?>
 
-get_footer( 'shop' );
+					<a class="product__list--navbar__items">
+						<!-- img -->
+						<div class="product__list--navbar__items--image">
+							<img src="https://picsum.photos/300" alt="">
+						</div>
+						<!-- rating -->
+						<div class="product__list--rating">
+							Rating:*******
+						</div>
+
+						<!-- type/ desc -->
+						<div class="product__list--navbar__product--inf">
+							<div class="product__list--navbar__product--type">
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero vel obcaecati cum
+								sequi praesentium aspernatur temporibus cupiditate ipsum quia amet?
+							</div>
+							<div class="product__list--navbar__product--desc">
+								Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa quibusdam obcaecati
+								velit minima, nihil sequi quaerat dolores rem amet impedit ipsa similique nulla
+								recusandae molestiae hic dolorem nemo beatae sed mollitia debitis reprehenderit?
+								Enim aspernatur ut deleniti vero incidunt veniam voluptatum, minima iusto omnis quod
+								ullam sapiente et quos tempora.
+							</div>
+							<!-- price -->
+							<div>
+								20.000đ
+							</div>
+						</div>
+					</a>
+				
+
+
+				</div>
+				<!-- ================================================ -->
+				<div class="product__numpage--pagination">
+					<div class="product__numpage--pagination__list">
+						<div class="product__numpage--pagination__item">
+							<a href="#"><ion-icon name="caret-back-outline"></ion-icon></a>
+						</div>
+						<div class="product__numpage--pagination__item">
+							<a href="#">1</a>
+						</div>
+						<div class="product__numpage--pagination__item">
+							<a href="#">2</a>
+						</div>
+						<div class="product__numpage--pagination__item">
+							<a href="#"><ion-icon name="caret-forward-outline"></ion-icon></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</main>
